@@ -11,6 +11,8 @@ onBeforeMount(() => {
 const axios = useNuxtApp().$axios
 const { setSnackbar } = useSnackbarStore()
 
+const loading = ref(false)
+
 const credentials = reactive({
   username: '',
   password: ''
@@ -22,18 +24,20 @@ const fields = ref([
 ])
 
 const login = async () => {
+  loading.value = true
   await axios.post('/api/login', {
     username: credentials.username,
     password: credentials.password
   }).then((response) => {
-    setSnackbar(true, 'success', 'Successful')
+    setSnackbar(true, 'success', 'Successfully logged in and directed index page')
     const token = response.data
     localStorage.setItem('token', token)
     navigateTo('/')
   }).catch((error) => {
-    setSnackbar(true, 'error', 'Username or password is not match')
+    setSnackbar(true, 'error', 'An error occurred')
     console.log('error', error)
   })
+  loading.value = false
 }
 
 </script>
@@ -68,6 +72,7 @@ const login = async () => {
             @click="login"
             color="primary"
             block
+            :loading="loading"
           >
             Submit
           </VBtn>

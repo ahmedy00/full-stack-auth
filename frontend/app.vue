@@ -12,7 +12,6 @@ const { snackbar } = storeToRefs(useSnackbarStore())
     <VMain>
       <VSnackbar
         v-model="snackbar.model"
-        location="top"
         :color="snackbar.state"
       >
         {{ snackbar.message }}
@@ -22,6 +21,7 @@ const { snackbar } = storeToRefs(useSnackbarStore())
             variant="text"
             icon
             size="small"
+            class="font-weight-bold"
           >
             X
           </VBtn>

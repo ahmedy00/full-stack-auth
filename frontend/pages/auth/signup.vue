@@ -34,10 +34,10 @@ const saveUser = async () => {
 
   loading.value = true
   await axios.post('/api/users', data).then(() => {
-    setSnackbar(true, 'success', 'Successful')
+    setSnackbar(true, 'success', 'Successfully signed up')
     navigateTo('/auth/login')
   }).catch((error) => {
-    setSnackbar(true, 'error', 'Error')
+    setSnackbar(true, 'error', 'An error occurred')
     console.log('error', error)
   })
   loading.value = false
