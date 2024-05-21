@@ -13,6 +13,7 @@ export default defineNuxtConfig({
       })
     },
     '@pinia/nuxt',
+    '@nuxt/test-utils/module'
   ],
   plugins: [
     '~/plugins/axios.ts'
