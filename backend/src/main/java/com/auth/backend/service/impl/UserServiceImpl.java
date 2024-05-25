@@ -1,7 +1,6 @@
 // service/impl/UserServiceImpl.java
 package com.auth.backend.service.impl;
 
-import com.auth.backend.dto.UserDto;
 import com.auth.backend.entity.User;
 import com.auth.backend.repository.UserRepository;
 import com.auth.backend.service.UserService;
