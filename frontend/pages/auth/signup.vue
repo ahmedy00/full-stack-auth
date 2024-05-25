@@ -45,7 +45,7 @@ const saveUser = async () => {
 
 </script>
 <template>
-  <VForm>
+  <VForm @keyup.enter="saveUser">
     <VContainer>
       <VRow>
         <VCol

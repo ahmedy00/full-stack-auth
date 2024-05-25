@@ -43,7 +43,7 @@ const login = async () => {
 </script>
 
 <template>
-  <VForm>
+  <VForm @keyup.enter="login">
     <VContainer>
       <VRow>
         <VCol
