@@ -3,6 +3,7 @@ package com.auth.backend.controller;
 import com.auth.backend.entity.User;
 import com.auth.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/users")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<User> getUsers() {
         return userService.getUsers();
     }

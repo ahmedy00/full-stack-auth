@@ -1,7 +1,7 @@
-// service/impl/UserServiceImpl.java
 package com.auth.backend.service.impl;
 
 import com.auth.backend.entity.User;
+import com.auth.backend.entity.enums.Role;
 import com.auth.backend.repository.UserRepository;
 import com.auth.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +28,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User addUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole(Role.DEFAULT);
         return userRepository.save(user);
     }
 

@@ -1,5 +1,6 @@
 package com.auth.backend.entity;
 
+import com.auth.backend.entity.enums.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,5 +17,8 @@ public class User {
     String email;
     String fullName;
     String password;
+
+    @Enumerated(EnumType.STRING)
+    Role role;
 
 }
