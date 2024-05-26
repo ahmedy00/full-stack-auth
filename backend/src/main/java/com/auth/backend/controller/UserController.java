@@ -4,8 +4,10 @@ import com.auth.backend.entity.User;
 import com.auth.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,5 +32,11 @@ public class UserController {
     @GetMapping("/users/{userId}")
     public Optional<User> getUserById(@PathVariable Long userId) {
         return userService.getUserById(userId);
+    }
+
+    @GetMapping("/users/currentUser")
+    public User getCurrentUser(Principal principal) {
+        String username = principal.getName();
+        return userService.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 }
