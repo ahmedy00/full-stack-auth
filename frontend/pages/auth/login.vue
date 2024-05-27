@@ -28,10 +28,13 @@ const login = async () => {
   await axios.post('/api/login', {
     username: credentials.username,
     password: credentials.password
-  }).then((response) => {
+  }).then(async (response) => {
     setSnackbar(true, 'success', 'Successfully logged in and directed index page')
     const token = response.data
     localStorage.setItem('token', token)
+    await axios.get('/api/users/currentUser').then(res => {
+      console.log('after login res', res)
+    })
     navigateTo('/')
   }).catch((error) => {
     setSnackbar(true, 'error', 'An error occurred')
