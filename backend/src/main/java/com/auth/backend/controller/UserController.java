@@ -39,4 +39,9 @@ public class UserController {
         String username = principal.getName();
         return userService.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
+
+    @DeleteMapping("/users/{userId}")
+    public void removeUser(@PathVariable Long userId) {
+        userService.removeUser(userId);
+    }
 }

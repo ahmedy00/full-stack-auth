@@ -11,4 +11,5 @@ public interface UserService {
     User addUser(User user);
     Optional<User> getUserById(Long userId);
     Optional<User> findByUsername(String username);
+    void removeUser(Long userId);
 }
