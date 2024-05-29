@@ -3,11 +3,13 @@
 const { setSnackbar } = useSnackbarStore()
 const { snackbar } = storeToRefs(useSnackbarStore())
 
+const { setCurrentUser } = useCurrentUser()
+
 const axios = useNuxtApp().$axios
 
 onMounted(async () => {
   await axios.get('/api/users/currentUser').then(res => {
-    console.log('res', res)
+    setCurrentUser(res.data)
   }).catch(err => {
     console.log('err', err)
   })

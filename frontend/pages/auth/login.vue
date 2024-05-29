@@ -10,6 +10,7 @@ onBeforeMount(() => {
 
 const axios = useNuxtApp().$axios
 const { setSnackbar } = useSnackbarStore()
+const { setCurrentUser } = useCurrentUser()
 
 const loading = ref(false)
 
@@ -33,7 +34,7 @@ const login = async () => {
     const token = response.data
     localStorage.setItem('token', token)
     await axios.get('/api/users/currentUser').then(res => {
-      console.log('after login res', res)
+      setCurrentUser(res.data)
     })
     navigateTo('/')
   }).catch((error) => {
