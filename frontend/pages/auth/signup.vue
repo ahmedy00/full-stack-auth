@@ -18,11 +18,39 @@ const credentials = reactive({
 })
 
 const fields = [
-  { modelValue: 'fullName', label: 'Full Name', type: 'input', rules: [(v: string) => !!v || 'Full Name is required'] },
-  { modelValue: 'username', label: 'Username', type: 'input', rules: [(v: string) => !!v || 'Username is required'] },
-  { modelValue: 'email', label: 'E-mail', type: 'email', rules: [(v: string) => !!v || 'E-mail is required'] },
-  { modelValue: 'password', label: 'Password', type: 'password', rules: [(v: string) => !!v || 'Password is required'] },
-  { modelValue: 'passwordConfirm', label: 'Password Confirm', type: 'password', rules: [(v: string) => !!v || 'Password confirm is required'] },
+  {
+    modelValue: 'fullName',
+    label: 'Full Name',
+    type: 'input',
+    rules: [
+      (v: string) => !!v || 'Full Name is required',
+      (v: string) => v.trim().split(/\s+/).length >= 2 || 'Full Name must contain at least 2 words'
+    ]
+  },
+  {
+    modelValue: 'username',
+    label: 'Username',
+    type: 'input',
+    rules: [(v: string) => !!v || 'Username is required']
+  },
+  {
+    modelValue: 'email',
+    label: 'E-mail',
+    type: 'email',
+    rules: [(v: string) => !!v || 'E-mail is required',]
+  },
+  {
+    modelValue: 'password',
+    label: 'Password',
+    type: 'password',
+    rules: [(v: string) => !!v || 'Password is required']
+  },
+  {
+    modelValue: 'passwordConfirm',
+    label: 'Password Confirm',
+    type: 'password',
+    rules: [(v: string) => !!v || 'Password confirm is required']
+  },
 ]
 
 const saveUser = async () => {
